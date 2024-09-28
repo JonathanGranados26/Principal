@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evento de Contingencia</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">Activar Evento de Contingencia</h1>
+        <button id="activarContingencia" class="btn btn-danger mt-3">Activar Evento</button>
+    </div>
+
+    <script>
+        document.getElementById('activarContingencia').addEventListener('click', async () => {
+            const eventoContingencia = {
+                "versionApp": 1,
+                "nit": "123456789",
+                "documento": {
+                    "campo1": "valor1",
+                    "campo2": "valor2"
+                }
+            };
+
+            try {
+                const response = await fetch('https://apitest.dtes.mh.gob.sv/fesv/contingencia', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Token_de_autorización',
+                        'User-Agent': 'Agente_de_usuario',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(eventoContingencia)
+                });
+
+                const data = await response.json();
+                console.log(data); // Maneja la respuesta según necesites
+                alert('Evento de contingencia activado correctamente.');
+            } catch (error) {
+                console.error('Error al activar el evento de contingencia:', error);
+                alert('Error al activar el evento de contingencia. Consulta la consola para más detalles.');
+            }
+        });
+    </script>
+</body>
+</html>

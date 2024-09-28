@@ -1,0 +1,21 @@
+body {
+  background-color:  #fdfae7;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.navbar {
+  background-color: silver;
+}
+.login-container {
+  margin-top: 100px; 
+}
+.login-form {
+  background-color: #f8fbfc;
+  padding: 50px; 
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.login-form h2 {
+  margin-bottom: 30px;
+}

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://apis.google.com/js/api.js"></script>
+    <link rel="stylesheet" href="/css/estilo.css">
+    <link rel="stylesheet" href="/js/ventas.js">
+    <link rel="stylesheet" href="/js/GenerarTokens.js">
+    <link rel="stylesheet" href="/js/conexion.js">
+    <link rel="stylesheet" href="/js/enviodb.js">
+    <link rel="stylesheet" href="/js/enviardatos.js">
+    <link rel="stylesheet" href="/js/firmador.js">
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="/img/logoo.png" alt="" width="30" height="24">
+            </a>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link white-text" href="/Public/Htokens.html">H.Tokens</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link white-text" href="/Public/Hemisor.html">H.Emisor</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link white-text" id="" href="/Public/Hreceptor.html">H.Receptor</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link white-text" href="/Public/HDTE.html">H.DTE</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link white-text" href="/Public/Contingencia.html">Eventos de Contingencia</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link white-text" href="/Public/Invalidacion.html">Eventos de Invalidacion</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link white-text" href="#">Envios de DTE</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <br>
+
+    <div class="container">
+        <!-- Contenido principal -->
+        <div class="row justify-content-center">
+            <div class="col-sm-10"> 
+                <div class="card">
+                    <h5 class="card-header">Facturación</h5>
+                    <div class="card-body">
+                        <h2 id="tipoDocumentoHeader" class="mt-2">Tipo de Documento</h2>
+                        <br>
+                        <a id="tipoDocumentoLink" href="#" class="btn btn-primary mx-2">Tipo de Documento</a>
+                        <a id="Tokens" href="#" class="btn btn-primary mx-2">Tokens</a>
+                        <a id="emisorLink" href="#" class="btn btn-primary mx-2">Emisor</a>
+                        <a id ="receptorLink" href="#" class="btn btn-primary mx-2">Receptor</a>
+                        <a id="descripcionLink" class="btn btn-primary mx-2">Descripción</a>
+                        <a id ="enviarDatos" href="#" class="btn btn-primary mx-5">Enviar Factura</a>
+                        <br><br>
+                        <div class="row justify-content-between align-items-center">
+                            <div class="col-sm-3">
+                                <button id="opcionesBtn" type="button" class="btn btn-primary mx-4">Opciones</button> <br>
+                            </div>
+                            <div id="tipoDocumentoSelectDiv" class="col-sm-9">
+                                <select class="form-select" id="tipoDocumento" aria-label="Opciones" onchange="mostrarCampos()">
+                                    <option selected>Selecciona una opción</option>
+                                    <option value="1">Factura Electrónica </option>
+                                    <option value="2">Comprobante de credito Fiscal Electronico</option>
+                                    <option value="3">Nota de Remision Electronico</option>
+                                    <option value="4">Nota de Credito Electronico</option>
+                                    <option value="5">Nota de Debito Electronico</option>
+                                    <option value="6">Comprobante de Liquidacion</option>
+                                </select>
+                            </div>
+                        </div>
+                                               <!--<form id="camposEmisor" style="display:none;"> --> 
+                                                <form id="camposEmisor" onsubmit="enviarEmisor(); return false;">
+                                                    <div class="mb-2 row">
+                                                        <label for="nombre" class="col-sm-2 col-form-label">Nombre:</label>
+                                                        <div class="col-sm-4">
+                                                            <input type="text" class="form-control" id="nombre" name="nombre">
+                                                        </div>
+                                                        <label for="nombreComercial" class="col-sm-2 col-form-label">Nombre Comercial:</label>
+                                                        <div class="col-sm-4">
+                                                            <input type="text" class="form-control" id="nombreComercial" name="nombreComercial">
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-2 row">
+                                                        <label for="actividad" class="col-sm-2 col-form-label">Actividad:</label>
+                                                        <div class="col-sm-4">
+                                                            <input type="text" class="form-control" id="actividad" name="actividad">
+                                                        </div>
+                                                        <label for="municipio" class="col-sm-2 col-form-label">Municipio:</label>
+                                                        <div class="col-sm-4">
+                                                            <input type="text" class="form-control" id="municipio" name="municipio">
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-2 row">
+                                                        <label for="departamento" class="col-sm-2 col-form-label">Departamento:</label>
+                                                        <div class="col-sm-4">
+                                                            <input type="text" class="form-control" id="departamento" name="departamento">
+                                                        </div>
+                                                        <label for="complemento" class="col-sm-2 col-form-label">Complemento:</label>
+                                                        <div class="col-sm-4">
+                                                            <input type="text" class="form-control" id="complemento" name="complemento">
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-2 row">
+                                                        <label for="telefono" class="col-sm-2 col-form-label">Teléfono:</label>
+                                                        <div class="col-sm-4">
+                                                            <input type="text" class="form-control" id="telefono" name="telefono">
+                                                        </div>
+                                                        <label for="nit" class="col-sm-2 col-form-label">NIT:</label>
+                                                        <div class="col-sm-4">
+                                                            <input type="text" class="form-control" id="nit" name="nit">
+                                                        </div>
+                                                    </div>
+                                                    <div class="mb-2 row">
+                                                        <label for="nrc" class="col-sm-2 col-form-label">NRC:</label>
+                                                        <div class="col-sm-4">
+                                                            <input type="text" class="form-control" id="nrc" name="nrc">
+                                                        </div>
+                                                        <label for="correo" class="col-sm-2 col-form-label">Correo:</label>
+                                                        <div class="col-sm-4">
+                                                            <input type="text" class="form-control" id="correo" name="correo">
+                                                        </div>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary">Registrar</button>
+                                                </form>
+                                            </div>
+                                        
+                                            <script>
+                                                function enviarEmisor() {
+                                                    const formData = new FormData(document.getElementById('camposEmisor'));
+                                        
+                                                    const emisor = {
+                                                        nombre: formData.get('nombre'),
+                                                        nombreComercial: formData.get('nombreComercial'),
+                                                        actividad: formData.get('actividad'),
+                                                        municipio: formData.get('municipio'),
+                                                        departamento: formData.get('departamento'),
+                                                        complemento: formData.get('complemento'),
+                                                        telefono: formData.get('telefono'),
+                                                        nit: formData.get('nit'),
+                                                        nrc: formData.get('nrc'),
+                                                        correo: formData.get('correo')
+                                                    };
+                                        
+                                                    axios.post('http://localhost:3000/api/emisores', emisor)
+                                                        .then(response => {
+                                                            alert('Emisor registrado correctamente');
+                                                        })
+                                                        .catch(error => {
+                                                            console.error('Error al registrar el emisor:', error);
+                                                        });
+                                                }
+                                            </script>
+                                        
+                        <!-- Campos del receptor -->
+                        <form id="camposReceptor" onsubmit="enviarReceptor(); return false;">
+                            <div class="mb-2 row">
+                                <label for="nombreE" class="col-sm-2 col-form-label">Nombre:</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="nombreE" name="nombre">
+                                </div>
+                                <label for="numeroDocumentoE" class="col-sm-2 col-form-label">Nº de Documento:</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="numeroDocumentoE" name="numeroDocumento">
+                                </div>
+                            </div>
+                            <div class="mb-2 row">
+                                <label for="tipoDocumentoE" class="col-sm-2 col-form-label">Tipo de Documento:</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="tipoDocumentoE" name="tipoDocumento">
+                                </div>
+                                <label for="municipioE" class="col-sm-2 col-form-label">Municipio:</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="municipioE" name="municipio">
+                                </div>
+                            </div>
+                            <div class="mb-2 row">
+                                <label for="departamentoE" class="col-sm-2 col-form-label">Departamento:</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="departamentoE" name="departamento">
+                                </div>
+                                <label for="complementoE" class="col-sm-2 col-form-label">Complemento:</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="complementoE" name="complemento">
+                                </div>
+                            </div>
+                            <div class="mb-2 row">
+                                <label for="telefonoE" class="col-sm-2 col-form-label">Teléfono:</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="telefonoE" name="telefono">
+                                </div>
+                                <label for="actividadE" class="col-sm-2 col-form-label">Actividad:</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="actividadE" name="actividad">
+                                </div>
+                            </div>
+                            <div class="mb-2 row">
+                                <label for="nrcE" class="col-sm-2 col-form-label">NRC:</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="nrcE" name="nrc">
+                                </div>
+                                <label for="correoE" class="col-sm-2 col-form-label">Correo:</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="correoE" name="correo">
+                                </div>
+                            </div>
+                            <button type="submit" form="camposReceptor" value="Submit">Registrar Emisor</button>
+                        </form>
+
+                        <script>
+                            function enviarReceptor() {
+                                const formData = new FormData(document.getElementById('camposReceptor'));
+                    
+                                const receptor = {
+                                    nombre: formData.get('nombre'),
+                                    numeroDocumento: formData.get('numeroDocumento'),
+                                    tipoDocumento: formData.get('tipoDocumento'),
+                                    municipio: formData.get('municipio'),
+                                    departamento: formData.get('departamento'),
+                                    complemento: formData.get('complemento'),
+                                    telefono: formData.get('telefono'),
+                                    actividad: formData.get('actividad'),
+                                    nrc: formData.get('nrc'),
+                                    correo: formData.get('correo')
+                                };
+                    
+                                axios.post('http://localhost:3000/api/receptores', receptor)
+                                    .then(response => {
+                                        alert('Receptor registrado correctamente');
+                                    })
+                                    .catch(error => {
+                                        console.error('Error al registrar el receptor:', error);
+                                    });
+                            }
+                        </script>
+                        
+                        <!-- Agregar campos para NIT y contraseña -->
+                        <div id="camposToken">
+                            <div class="mb-2 row">
+                                <label for="nit" class="col-sm-2 col-form-label">NIT:</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" id="nit2" value="06141101171056">
+                                </div>
+                                <label for="contrasena" class="col-sm-2 col-form-label">Contraseña:</label>
+                                <div class="col-sm-2">
+                                    <input type="password" class="form-control" id="contrasena" value="vk6G6i2Ad7JVLz/">
+                                </div>
+                            </div>
+                            <div class="mb-2 row">
+                                <label for="token" class="col-sm-2 col-form-label">Token:</label>
+                                <div class="col-sm-8">
+                                    <textarea class="form-control" id="token" rows="5" readonly></textarea>
+                                </div>
+                            </div>
+                            <div class="mb-2 row">
+                                <div class="col-sm-4">
+                                    <button class="btn btn-primary" onclick="generarToken()">Generar Token</button>
+                                </div>
+                            </div>
+                        </div>
+                        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+                        <script>
+                        
+                        </script>
+                        <div id="camposDescripcion" style="display:none;">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <thead class="bg-dark text-light">
+                                        <tr>
+                                            <th>Cantidad</th>
+                                            <th>Descripción</th>
+                                            <th>Precio Unitario</th>
+                                            <th>Ventas No Sujetas</th>
+                                            <th>Ventas Exentas</th>
+                                            <th>Ventas Afectadas</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><input type="number" id="cantidad1" value="1"></td>
+                                            <td><input type="text" id="descripcion1" value=""></td>
+                                            <td><input type="number" id="precioUnitario1" value=""></td>
+                                            <td><input type="text" id="ventasNoSujetas1" value=""></td>
+                                            <td><input type="text" id="ventasExentas1" value=""></td>
+                                            <td><input type="text" id="ventasAfectadas1" value=""></td>
+                                            <td><input type="text" id="total1" value=""></td>
+                                        </tr>
+                                        <tr>
+                                            <td><input type="number" id="cantidad2" value="1"></td>
+                                            <td><input type="text" id="descripcion2" value=""></td>
+                                            <td><input type="number" id="precioUnitario2" value=""></td>
+                                            <td><input type="text" id="ventasNoSujetas2" value=""></td>
+                                            <td><input type="text" id="ventasExentas2" value=""></td>
+                                            <td><input type="text" id="ventasAfectadas2" value=""></td>
+                                            <td><input type="text" id="total2" value=""></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <button onclick="enviarDatos()">Enviar Datos</button>
+                        
+                        <script>function enviarDatos() {
+                            try {
+                                const data = {
+                                    emisor: {
+                                        nombre: document.getElementById('nombre').value,
+                                        nombreComercial: document.getElementById('nombreComercial').value,
+                                        actividad: document.getElementById('actividad').value,
+                                        municipio: document.getElementById('municipio').value,
+                                        departamento: document.getElementById('departamento').value,
+                                        complemento: document.getElementById('complemento').value,
+                                        telefono: document.getElementById('telefono').value,
+                                        nit: document.getElementById('nit').value,
+                                        nrc: document.getElementById('nrc').value,
+                                        correo: document.getElementById('correo').value
+                                    },
+                                    receptor: {
+                                        nombre: document.getElementById('nombreE').value,
+                                        numeroDocumento: document.getElementById('numeroDocumentoE').value,
+                                        tipoDocumento: document.getElementById('tipoDocumentoE').value,
+                                        municipio: document.getElementById('municipioE').value,
+                                        departamento: document.getElementById('departamentoE').value,
+                                        complemento: document.getElementById('complementoE').value,
+                                        telefono: document.getElementById('telefonoE').value,
+                                        actividad: document.getElementById('actividadE').value,
+                                        nrc: document.getElementById('nrcE').value,
+                                        correo: document.getElementById('correoE').value
+                                    },
+                                    descripcion: [
+                                        {
+                                            cantidad: document.getElementById('cantidad1').value,
+                                            descripcion: document.getElementById('descripcion1').value,
+                                            precioUnitario: document.getElementById('precioUnitario1').value,
+                                            ventasNoSujetas: document.getElementById('ventasNoSujetas1').value,
+                                            ventasExentas: document.getElementById('ventasExentas1').value,
+                                            ventasAfectadas: document.getElementById('ventasAfectadas1').value,
+                                            total: document.getElementById('total1').value
+                                        },
+                                        {
+                                            cantidad: document.getElementById('cantidad2').value,
+                                            descripcion: document.getElementById('descripcion2').value,
+                                            precioUnitario: document.getElementById('precioUnitario2').value,
+                                            ventasNoSujetas: document.getElementById('ventasNoSujetas2').value,
+                                            ventasExentas: document.getElementById('ventasExentas2').value,
+                                            ventasAfectadas: document.getElementById('ventasAfectadas2').value,
+                                            total: document.getElementById('total2').value
+                                        }
+                                    ]
+                                };
+                        
+                                fetch('https://localhost:8113/firmardocumento/', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify(data)
+                                })
+                                .then(response => {
+                                    if (!response.ok) {
+                                        return response.text().then(text => { throw new Error(text) });
+                                    }
+                                    return response.json();
+                                })
+                                .then(data => {
+                                    console.log('Success:', data);
+                                    alert('Datos enviados correctamente');
+                                })
+                                .catch((error) => {
+                                    console.error('Error:', error.message);
+                                    alert('Error al enviar los datos: ' + error.message);
+                                });
+                            } catch (error) {
+                                console.error('Error al obtener los valores de los campos:', error);
+                                alert('Error al obtener los valores de los campos: ' + error.message);
+                            }
+                        }
+                        </script>
+                            <div class="card mt-4">
+                                <div class="card-body">
+                                    <h5 class="card-title">Sumas</h5>
+                                    <table id="sumasTable" class="table table-bordered">
+                                        <tr>
+                                            <th class="styled-th">13% IVA</th>
+                                            <td id="ivaTotal"></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="styled-th">Sub-total</th>
+                                            <td id="subTotal"></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="styled-th">(-) IVA Retenido</th>
+                                            <td id="ivaRetenido"></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="styled-th">Ventas no sujetas:</th>
+                                            <td id="ventasNoSujetas"></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="styled-th">Ventas excentas:</th>
+                                            <td id="ventasExcentas"></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="styled-th">Venta total:</th>
+                                            <td id="ventaTotal"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <script>
+                            document.getElementById('tipoDocumento').addEventListener('change', function () {
+                                var tipoDocumento = this.value;
+                                if (tipoDocumento === "1") {
+                                    actualizarFacturaElectronica();
+                                }
+                            });
+                        </script>
+                    
+                  
+                        <div class="row mt-4">
+                            <div class="col-sm-4">
+                                <button id="limpiarBtn" type="button" class="btn btn-secondary">Limpiar Campos</button>
+                            </div>
+                            <div class="col-sm-4">
+                                <button id="anteriorBtn" type="button" class="btn btn-secondary">Vista Anterior</button>
+                            </div>
+                            <div class="col-sm-4">
+                                <button id="siguienteBtn" type="button" class="btn btn-secondary">Siguiente</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contenido del Receptor -->
+    <div class="container" id="receptorContent" style="display:none;">
+    </div>
+    <script src="/js/index.js"></script>
+    <script src="/js/receptores.js"></script>
+    <script src="/js/envioDTE.js"></script>
+    
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historiales</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/estilo.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="/img/logoo.png" alt="" width="30" height="24">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Public/Htojen.html">H.Tokens</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Public/Hemisor.html">H.Emisor</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Public/Hreceptor.html">H.Receptor</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">H.DTE</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Eventos de Contingencia</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Eventos de Invalidacion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Envios de DTE</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- El resto del contenido de tu página -->
+    <div class="container mt-4">
+        <h1>Historiales</h1>
+        <table id="historialesTable" class="table table-bordered table-striped mt-4">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Código de Generación</th>
+                    <th scope="col">Sello Recibido</th>
+                    <th scope="col">Operaciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Aquí se llenarán dinámicamente los registros -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.16/jspdf.plugin.autotable.min.js"></script>
+    <script src="historiales.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial de Tokens</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/estilo.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="/img/logoo.png" alt="" width="30" height="24">
+            </a>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link white-text" href="/Public/Htokens.html">H.Tokens</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link white-text" href="/Public/Hemisor.html">H.Emisor</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link white-text" id="" href="/Public/Hreceptor.html">H.Receptor</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link white-text" href="/Public/HDTE.html">H.DTE</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link white-text" href="/Public/Contingencia.html">Eventos de Contingencia</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link white-text" href="/Public/Invalidacion.html">Eventos de Invalidacion</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link white-text" href="#">Envios de DTE</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="historialTokens" class="container mt-4">
+        <h2>Historial de Tokens</h2>
+        <ul id="listaTokens" class="list-group">
+            <!-- Aquí se agregarán los tokens generados -->
+        </ul>
+        <div class="mb-2 row mt-3">
+            <div class="col-sm-4">
+                <button class="btn btn-secondary" onclick="volver()">Volver</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function actualizarHistorial() {
+            const listaTokens = document.getElementById('listaTokens');
+            listaTokens.innerHTML = ''; // Limpiar la lista actual
+
+            // Cargar tokens desde localStorage
+            let tokensGenerados = JSON.parse(localStorage.getItem('tokensGenerados')) || [];
+
+            tokensGenerados.forEach(token => {
+                const listItem = document.createElement('li');
+                listItem.className = 'list-group-item';
+                listItem.textContent = token;
+                listaTokens.appendChild(listItem);
+            });
+        } 
+
+        function volver() {
+            window.location.href = 'index.html'; // Reemplaza con la ruta real a la vista de generación de tokens
+        }
+
+        // Llama a actualizarHistorial al cargar la página
+        window.onload = actualizarHistorial;
+    </script>
+</body>
+</html>

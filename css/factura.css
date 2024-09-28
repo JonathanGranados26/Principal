@@ -1,0 +1,73 @@
+/* Estilos CSS del archivo estilo.css */
+.white-text {
+    color: white !important;
+  }
+  
+  body {
+    line-height: 1.5;
+    letter-spacing: 0.1px;
+    text-align: justify;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #fdfae7;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  .encabezado {
+    background-color: silver;
+    padding: 20px; /* Añadido relleno para mejorar la apariencia */
+    border-bottom: 2px solid #333; /* Añadido borde inferior */
+  }
+  
+  .encabezado h1, .encabezado p {
+    margin: 0; /* Eliminado el margen interior para los elementos del encabezado */
+  }
+  
+  .logo {
+    width: 100px; /* Ajuste de tamaño del logo */
+    height: auto; /* Altura automática para mantener la proporción */
+  }
+  
+  .tabla {
+    width: 100%; /* Asegurar que la tabla ocupe todo el ancho disponible */
+    border-collapse: collapse; /* Combinar bordes de celda */
+  }
+  
+  .tabla th, .tabla td {
+    border: 1px solid #dddddd; /* Añadir bordes a celdas y encabezados */
+    padding: 8px; /* Añadir relleno a celdas */
+    text-align: left; /* Alinear texto a la izquierda */
+  }
+  
+  .tabla th {
+    background-color: #f2f2f2; /* Color de fondo para los encabezados */
+  }
+  
+  .informacion-operacion {
+    margin-top: 20px; /* Espacio adicional entre cada sección de información */
+  }
+  
+  .informacion-operacion p {
+    margin: 5px 0; /* Espacio entre párrafos de información */
+  }
+  
+  .informacion-total-operacion {
+    margin-top: 20px; /* Espacio adicional entre la tabla y el contenido superior */
+  }
+  
+  .informacion-total-operacion table {
+    width: 100%; /* Asegurar que la tabla ocupe todo el ancho disponible */
+    border-collapse: collapse; /* Combinar bordes de celda */
+  }
+  
+  .informacion-total-operacion table td,
+  .informacion-total-operacion table th {
+    border: 1px solid #dddddd; /* Añadir bordes a celdas y encabezados */
+    padding: 8px; /* Añadir relleno a celdas */
+    text-align: left; /* Alinear texto a la izquierda */
+  }
+  
+  .informacion-total-operacion table th {
+    background-color: #f2f2f2; /* Color de fondo para los encabezados */
+  }
+  

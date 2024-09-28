@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>crear PDF</h1>
+    <script type="text/javascript" src="jspdf.min.js"> </script>
+   <a href="javascript:genPDF()">Generar Pdf</a>
+   <script type="text/javascript">
+        function genPDF(){
+            var doc=new jsPDF();
+            doc.text(20,20,"este es un pdf")
+            doc.save("Midocumento.pdf")
+        }
+</script>
+</body>
+</html>

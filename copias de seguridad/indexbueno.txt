@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/estilo.css">
+</head>
+<body>
+    <style>
+        .navbar {
+          background-color: silver;
+        }
+    </style>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="img/logoo.png" alt="" width="30" height="24">
+            </a>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link white-text" href="#">H.Tokens</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link white-text" href="#">H.Emisor</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link white-text" id="" href="#">H.Receptor</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link white-text" href="#">H.DTE</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link white-text" href="#">Eventos de Contingencia</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link white-text" href="#">Eventos de Invalidacion</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link white-text" href="#">Envios de DTE</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <br>
+
+    <div class="container">
+        <!-- Contenido principal -->
+        <div class="row justify-content-center">
+            <div class="col-sm-10"> 
+                <div class="card">
+                    <h5 class="card-header">Facturación</h5>
+                    <div class="card-body">
+                        <h2 id="tipoDocumentoHeader" class="mt-2">Tipo de Documento</h2>
+                        <br>
+                        <a id="tipoDocumentoLink" href="#" class="btn btn-primary mx-2">Tipo de Documento</a>
+                        <a id="Tokens" href="#" class="btn btn-primary mx-2">Tokens</a>
+                        <a id="emisorLink" href="#" class="btn btn-primary mx-2">Emisor</a>
+                        <a id ="receptorLink" href="#" class="btn btn-primary mx-2">Receptor</a>
+                        <a id="descripcionLink" class="btn btn-primary mx-2">Descripción</a>
+                        <a id ="enviar" href="#" class="btn btn-primary mx-5">Enviar</a>
+                        <br><br>
+                        <div class="row justify-content-between align-items-center">
+                            <div class="col-sm-3">
+                                <button id="opcionesBtn" type="button" class="btn btn-primary mx-4">Opciones</button> <br>
+                            </div>
+                            <div id="tipoDocumentoSelectDiv" class="col-sm-9">
+                                <select class="form-select" id="tipoDocumento" aria-label="Opciones" onchange="mostrarCampos()">
+                                    <option selected>Selecciona una opción</option>
+                                    <option value="1">Factura Electrónica </option>
+                                    <option value="2">Comprobante de credito Fiscal Electronico</option>
+                                    <option value="3">Nota de Remision Electronico</option>
+                                    <option value="4">Nota de Credito Electronico</option>
+                                    <option value="5">Nota de Debito Electronico</option>
+                                    <option value="6">Comprobante de Liquidacion</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="camposEmisor" style="display:none;">
+                            <div class="mb-2 row">
+                                <label for="inputNombre" class="col-sm-2 col-form-label">Nombre:</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="inputNombre">
+                                </div>
+                                <label for="nombreComercial" class="col-sm-2 col-form-label">Nombre Comercial:</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="nombreComercial">
+                                </div>
+                            </div>
+                            <div class="mb-2 row">
+                                <label for="selectNit" class="col-sm-2 col-form-label">NIT:</label>
+                                <div class="col-sm-4">
+                                    <select class="form-select" id="selectNit">
+                                        <option selected>Seleccione uno</option>
+                                        <option value="1">Opción 1</option>
+                                        <option value="2">Opción 2</option>
+                                        <option value="3">Opción 3</option>
+                                    </select>
+                                </div>
+                                <label for="selectMunicipio" class="col-sm-2 col-form-label">Municipio:</label>
+                                <div class="col-sm-4">
+                                    <select class="form-select" id="selectMunicipio">
+                                        <option selected>Seleccione uno</option>
+                                        <option value="1">Opción 1</option>
+                                        <option value="2">Opción 2</option>
+                                        <option value="3">Opción 3</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-2 row">
+                                <label for="selectDepartamento" class="col-sm-2 col-form-label">Departamento:</label>
+                                <div class="col-sm-4">
+                                    <select class="form-select" id="selectDepartamento">
+                                        <option selected>Seleccione uno</option>
+                                        <option value="1">Opción 1</option>
+                                        <option value="2">Opción 2</option>
+                                        <option value="3">Opción 3</option>
+                                    </select>
+                                </div>
+                                <label for="complemento" class="col-sm-2 col-form-label">Complemento:</label>
+                                <div class="col-sm-4">
+                                    <select class="form-select" id="complemento">
+                                        <option selected>Seleccione uno</option>
+                                        <option value="1">Opción 1</option>
+                                        <option value="2">Opción 2</option>
+                                        <option value="3">Opción 3</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-2 row">
+                                <label for="telefono" class="col-sm-2 col-form-label">Teléfono:</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="telefono">
+                                </div>
+                                <label for="selectTipoDocumento" class="col-sm-2 col-form-label">NIT:</label>
+                                <div class="col-sm-4">
+                                    <select class="form-select" id="selectTipoDocumento">
+                                        <option selected>Seleccione uno</option>
+                                        <option value="1">Opción 1</option>
+                                        <option value="2">Opción 2</option>
+                                        <option value="3">Opción 3</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-2 row">
+                                <label for="nrc" class="col-sm-2 col-form-label">NRC:</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="nrc">
+                                </div>
+                                <label for="correo" class="col-sm-2 col-form-label">Correo:</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="correo">
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <!-- Campos del receptor -->
+                        <div id="camposReceptor" style="display:none;">
+                            <div class="mb-2 row">
+                                <label for="inputPassword" class="col-sm-2 col-form-label">Nombre:</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="inputPassword">
+                                </div>
+                                <label for="nombreComercial" class="col-sm-2 col-form-label">Nº de Documento</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="nombreComercial">
+                                </div>
+                            </div>
+                            <div class="mb-2 row">
+                                <label for="select" class="col-sm-2 col-form-label">Tipo de Documento:</label>
+                                <div class="col-sm-4">
+                                    <select class="form-select" id="select">
+                                        <option selected>Seleccione uno</option>
+                                        <option value="1">Opción 1</option>
+                                        <option value="2">Opción 2</option>
+                                        <option value="3">Opción 3</option>
+                                    </select>
+                                </div>
+                                <label for="selectMunicipio" class="col-sm-2 col-form-label">Municipio:</label>
+                                <div class="col-sm-4">
+                                    <select class="form-select" id="selectMunicipio">
+                                        <option selected>Seleccione uno</option>
+                                        <option value="1">Opción 1</option>
+                                        <option value="2">Opción 2</option>
+                                        <option value="3">Opción 3</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-2 row">
+                                <label for="selectDepartamento" class="col-sm-2 col-form-label">Departamento:</label>
+                                <div class="col-sm-4">
+                                    <select class="form-select" id="selectDepartamento">
+                                        <option selected>Seleccione uno</option>
+                                        <option value="1">Opción 1</option>
+                                        <option value="2">Opción 2</option>
+                                        <option value="3">Opción 3</option>
+                                    </select>
+                                </div>
+                                <label for="complemento" class="col-sm-2 col-form-label">Complemento:</label>
+                                <div class="col-sm-4">
+                                    <select class="form-select" id="complemento">
+                                        <option selected>Seleccione uno</option>
+                                        <option value="1">Opción 1</option>
+                                        <option value="2">Opción 2</option>
+                                        <option value="3">Opción 3</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-2 row">
+                                <label for="telefono" class="col-sm-2 col-form-label">Teléfono:</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="telefono">
+                                </div>
+                                <label for="selectTipoDocumento" class="col-sm-2 col-form-label">Actividad:</label>
+                                <div class="col-sm-4">
+                                    <select class="form-select" id="selectTipoDocumento">
+                                        <option selected>Seleccione uno</option>
+                                        <option value="1">Opción 1</option>
+                                        <option value="2">Opción 2</option>
+                                        <option value="3">Opción 3</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mb-2 row">
+                                <label for="nrc" class="col-sm-2 col-form-label">NRC:</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="nrc">
+                                </div>
+                                <label for="correo" class="col-sm-2 col-form-label">Correo:</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="correo">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Agregar campos para NIT y contraseña -->
+                        <div id="camposToken" style="display:none;">
+                            <div class="mb-2 row">
+                                <label for="nit" class="col-sm-2 col-form-label">NIT:</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" id="nit">
+                                </div>
+                                <label for="contrasena" class="col-sm-2 col-form-label">Contraseña:</label>
+                                <div class="col-sm-2">
+                                    <input type="password" class="form-control" id="contrasena">
+                                </div>
+                            </div>
+                            <div class="mb-2 row">
+                                <label for="comentarios" class="col-sm-2 col-form-label">Api Key:</label>
+                                <div class="col-sm-8">
+                                    <textarea class="form-control" id="comentarios" rows="5"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <!--campos para descripcion-->
+                           <!--campos para descripcion-->
+                           <div id="camposDescripcion" style="display:none;">
+                            <!-- Insertar la tabla y la información de la operación aquí -->
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <thead class="bg-dark text-light">
+                                        <tr>
+                                            <th>Cantidad</th>
+                                            <th>Descripción</th>
+                                            <th>Precio Unitario</th>
+                                            <th>Ventas No Sujetas</th>
+                                            <th>Ventas excentas</th>
+                                            <th>Ventas Afectadas</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Producto 1</td>
+                                            <td>$10.00</td>
+                                            <td>$5.00</td>
+                                            <td>$5.00</td>
+                                            <td>$5.00</td>
+                                            <td>$10.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Producto 2</td>
+                                            <td>$15.00</td>
+                                            <td>$10.00</td>
+                                            <td>$5.00</td>
+                                            <td>$30.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row mt-4">
+                                <div class="col-sm-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Información de la operación</h5>
+                                            <p class="card-text"><strong>Recibido por:</strong> $Nombre del receptor</p>
+                                            <p class="card-text"><strong>Nombre:</strong> $Nombre del cliente</p>
+                                            <p class="card-text"><strong>DUI/NIT:</strong> $DUI o NIT del cliente</p>
+                                            <p class="card-text"><strong>Firma:</strong> ...</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Información de la operación</h5>
+                                            <p class="card-text"><strong>Entregado por:</strong> $Nombre del entregador</p>
+                                            <p class="card-text"><strong>Nombre:</strong> $Nombre del cliente</p>
+                                            <p class="card-text"><strong>DUI/NIT:</strong> $DUI o NIT del cliente</p>
+                                            <p class="card-text"><strong>Firma:</strong> ...</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card mt-4">
+                                <div class="card-body">
+                                    <h5 class="card-title">Sumas</h5>
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <th class="styled-th">13% IVA</th>
+                                            <td>$5.00</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="styled-th">Sub-total</th>
+                                            <td>$5.00</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="styled-th">(-) IVA Retenido</th>
+                                            <td>$5.00</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="styled-th">Ventas no sujetas:</th>
+                                            <td>$5.00</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="styled-th">Ventas excentas:</th>
+                                            <td>$5.00</td>
+                                        </tr>
+                                        <tr>
+                                            <th class="styled-th">Venta total:</th>
+                                            <td>$5.00</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-sm-4">
+                                <button id="limpiarBtn" type="button" class="btn btn-secondary">Limpiar Campos</button>
+                            </div>
+                            <div class="col-sm-4">
+                                <button id="anteriorBtn" type="button" class="btn btn-secondary">Vista Anterior</button>
+                            </div>
+                            <div class="col-sm-4">
+                                <button id="siguienteBtn" type="button" class="btn btn-secondary">Siguiente</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contenido del Receptor -->
+    <div class="container" id="receptorContent" style="display:none;">
+    </div>
+    <script src="/js/index.js"></script>
+</body>
+</html>
